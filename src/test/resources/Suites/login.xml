@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="none">
+    <test name="Git Login">
+
+        <classes>
+            <class name="testRunner.webRunner.CucumberLoginRunner" />
+        </classes>
+    </test>
+
+</suite>

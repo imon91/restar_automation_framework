@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation group: 'org.testng', name: 'testng', version: '6.14.3'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.5.3'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.2'
+    implementation group: 'org.apache.poi', name: 'poi', version: '3.9'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    testImplementation 'io.cucumber:cucumber-java:6.10.0'
+    testImplementation 'io.cucumber:cucumber-testng:6.10.0'
+}
+
+task automationWEBTest(type: Test){
+
+    useTestNG() {
+        useDefaultListeners = true
+        scanForTestClasses = false
+        testLogging.showStandardStreams = true
+        systemProperties project.properties.subMap(["Type","Browser"])
+        String testValue = System.getProperty("Type");
+        systemProperty 'Browser', System.getProperty('Browser')
+
+
+
+        if(testValue.equals("webLogin")){
+            suites "src/test/resources/Suites/login.xml"
+        }
+        else if(testValue.equals("editSytle")){
+
+            suites "src/test/resources/Suite/webSuite/editStyle.xml"
+        }
+
+
+    }
+}
