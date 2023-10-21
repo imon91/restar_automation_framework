@@ -49,6 +49,30 @@ public class BrowserHandler {
 
         }
 
+        else if(browserName.equalsIgnoreCase("headlessChrome")){
+            ChromeOptions options = new ChromeOptions();
+            Map<String, Object> prefs = new HashMap<String, Object>();
+            Map<String, Object> profile = new HashMap<String, Object>();
+            Map<String, Integer> contentSettings = new HashMap<String, Integer>();
+
+            // SET CHROME OPTIONS
+            // 0 - Default, 1 - Allow, 2 - Block
+            contentSettings.put("notifications", 2);
+            contentSettings.put("geolocation", 2);
+            profile.put("managed_default_content_settings", contentSettings);
+            prefs.put("profile", profile);
+            options.addArguments("--remote-allow-origins=*");
+            options.setExperimentalOption("prefs", prefs);
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless");
+
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(options);
+
+
+        }
+
 
 
       return driver;

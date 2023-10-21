@@ -1,0 +1,5 @@
+ ./gradlew automationWEBTest -DType=webLogin -DBrowser=chrome
+
+ ./gradlew automationWEBTest -DType=createIssue -DBrowser=chrome
+ ./gradlew automationWEBTest -DType=createIssue -DBrowser=headlessChrome
+

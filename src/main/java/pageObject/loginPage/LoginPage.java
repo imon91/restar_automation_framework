@@ -1,5 +1,7 @@
 package pageObject.loginPage;
 
+import core.recordPlayer.RecordControl;
+import core.recordPlayer.ScreenRecorderUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +19,8 @@ public class LoginPage {
     By dashboardText =By.xpath("//a[@class=\"AppHeader-context-item\"]");
 
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) throws Exception {
+
         this.driver = driver;
         this.driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
     }
